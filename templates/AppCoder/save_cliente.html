@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block contenido_cambia %}
+    <h1>Sus datos han sido guardados con exito </h1>
+
+    {% if clientes %}
+        {% for cliente in clientes %}
+            <p>nombre: {{ nombre.nombre }}</p>
+            <p>apellido: {{nombre.apellido}} </p>
+            <p>email: {{nombre.email}} </p>
+        {% endfor %}
+    {% else %}
+        <h1>No hay clientes registrados por el momento</h1>
+    {% endif %}
+
+{% endblock %}

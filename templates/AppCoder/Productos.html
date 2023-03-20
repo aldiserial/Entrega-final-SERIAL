@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block contenido_cambia %}
+
+    <h1>La tienda de los fanáticos del hockey </h1>
+    <form action = "{% url 'AppCoderClientes' %}" method = "post">{% csrf_token %}
+        {{form.as_p}}
+        <input type = "submit" value = "Enviar">
+    </form>
+    <br><hr>
+
+
+{% endblock %}
