@@ -4,7 +4,7 @@ from django.contrib import admin
 from AppCoder.views import *
 
 urlpatterns = [
-        path('', include('admin_soft.urls')),
+        path(' ', include('admin_soft.urls')),
         path('admin/', admin.site.urls),
         path('buscar_curso', busqueda_curso, name="AppCoderBuscarCurso"),
         path('cursos', cursos, name = "AppCoderCursos"),

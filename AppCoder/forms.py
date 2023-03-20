@@ -9,3 +9,15 @@ class CursoForm(forms.Form):
 class BusquedaCursoForm(forms.Form):
 
     nombre = forms.CharField(min_length=3, max_length=40)
+
+class ClientesForm(forms.Form):
+
+    nombre = forms.CharField()
+    apellido = forms.CharField()
+    email = forms.EmailField()
+
+class ProductoForm(forms.Form):
+
+    producto = forms.CharField()
+    categoria = forms.CharField()
+    stock = forms.IntegerField()

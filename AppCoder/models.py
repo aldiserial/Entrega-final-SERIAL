@@ -8,16 +8,17 @@ class Curso(models.Model):
     def __str__(self):
         return f'Curso: {self.nombre}, Camada: {self.camada}'
 
-class Estudiantes(models.Model):
+class Clientes(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
-
-class Profesor(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    email = models.EmailField()
-    profesion = models.CharField(max_length=30)
 
     def __str__(self):
-        return f'Profesor: {self.nombre} {self.apellido}'
+        return f'Nombre: {self.nombre}, Apellido: {self.apellido}, Email: {self.email}'
+class Producto(models.Model):
+    producto = models.CharField(max_length=30)
+    categoria = models.CharField(max_length=30)
+    stock = models.IntegerField()
+
+    def __str__(self):
+        return f'Producto: {self.producto}. {self.stock} unidades en stock.'

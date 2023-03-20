@@ -18,11 +18,11 @@ from django.contrib import admin
 from AppCoder.views import *
 
 urlpatterns = [
-        path('', include('admin_soft.urls')),
+        path('', inicio, name="AppCoderInicio"),
         path('admin/', admin.site.urls),
         path('cursos', cursos, name = "AppCoderCursos"),
         path('buscar_curso', busqueda_curso, name="AppCoderBuscarCurso"),
         path('curso/<nombre>/<camada>', crear_curso, name = "AppCoderCurso"),
-        path('estudiantes', estudiantes, name = "AppCoderEstudiantes"),
-        path('profesores', profesores, name = "AppCoderProfesores"),
+        path('clientes', clientes, name = "AppCoderClientes"),
+        path('producto', producto, name = "AppCoderProductos"),
 ]
