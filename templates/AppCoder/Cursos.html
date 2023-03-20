@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block contenido_cambia %}
+    <form action = "{% url 'AppCoderCursos' %}" method = "post">{% csrf_token %}
+        {{form.as_p}}
+        <input type = "submit" value = "Enviar">
+    </form>
+    <br><hr>
+    <form action="{% url 'AppCoderBuscarCurso' %}">
+        {{ form_busqueda.as_p }}
+        <input type = "submit" value = "Buscar">
+    </form>
     <h1>La tienda de los fanáticos </h1>
+
     {% if cursos %}
         {% for curso in cursos %}
             <p>curso: {{ curso.nombre }}</p>
