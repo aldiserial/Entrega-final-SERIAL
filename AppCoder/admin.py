@@ -6,3 +6,4 @@ from AppCoder.models import *
 admin.site.register(Curso)
 admin.site.register(Clientes)
 admin.site.register(Producto)
+admin.site.register(Envio)

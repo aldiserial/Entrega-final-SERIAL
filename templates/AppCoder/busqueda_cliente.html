@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block contenido_cambia %}
-    {% if cursos %}
-        {% for curso in cursos %}
-            <p> curso: {{ curso }} </p>
+    {% if nombres %}
+        {% for nombre in nombres %}
+            <p> nombre: {{ nombres }} </p>
 
         {% endfor %}
     {% else %}
