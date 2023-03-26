@@ -25,10 +25,21 @@
                 <a class="navbar-brand" href="{% url 'AppCoderClientes' %}">Clientes</a>
                 <a class="navbar-brand" href="{% url 'AppCoderProductos' %}">Productos</a>
                 <a class="navbar-brand" href="{% url 'AppCoderEnvio' %}">Envio</a>
-                <a class="btn btn-primary" href="#signup">¡Unite!</a>
+
+                {% if user.is_authenticated %}
+                    <a class="btn btn-primary" href="{% url 'AccountLogout' %} ">Cerrar sesión</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'AccountRegister' %}" >Registrar</a>
+                    <a class="btn btn-primary" href="{% url 'AccountLogin' %} ">Iniciar sesión</a>
+                {% endif %}
+
+
+
             </div>
         </nav>
         <h1>FH Flick Hockey</h1>
+
+
         <!-- Body-->
         {% block contenido_cambia %}
 

@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -14,7 +15,7 @@ class Clientes(models.Model):
     email = models.EmailField(unique=True)
 
     def __str__(self):
-        return f'Nombre: {self.nombre}, Apellido: {self.apellido}, Email: {self.email}'
+        return f'Nombre: {self.nombre} {self.apellido}, Email: {self.email}'
 class Producto(models.Model):
     producto = models.CharField(max_length=30, unique=True)
     categoria = models.CharField(max_length=30)
@@ -32,4 +33,4 @@ class Envio(models.Model):
     codigopostal = models.IntegerField()
 
     def __str__(self):
-        return f'Su envío será enviado a {self.calle} {self.numero_calle}, {self.localidad}, {self.provincia} '
+        return f'Domicilio: {self.calle} {self.numero_calle}, {self.localidad}, {self.provincia} '

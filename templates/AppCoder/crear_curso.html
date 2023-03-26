@@ -2,29 +2,11 @@
 
 {% block contenido_cambia %}
 
-
-    <form action = "{% url 'AppCoderClientes' %}" method = "post">{% csrf_token %}
+    <form action = "{% url 'AppCoderCrearCursos' %}" method = "post">{% csrf_token %}
         {{form.as_p}}
         <input type = "submit" value = "Enviar">
     </form>
-    <br><hr>
-    <form action="{% url 'AppCoderBuscarCliente' %}">
-        {{ form_busqueda.as_p }}
-    <input type = "submit" value = "Buscar">
-    </form>
 
-    <br><hr>
-
-    {% if clientes %}
-        {% for cliente in clientes %}
-            <p>nombre: {{ cliente.nombre }}</p>
-            <p>apellido: {{cliente.apellido}} </p>
-            <p>email: {{cliente.email}} </p>
-
-        {% endfor %}
-    {% else %}
-        <h4>No hay clientes registrados por el momento</h4>
-    {% endif %}
 
      <header class="masthead">
             <div class="container position-relative">
@@ -32,7 +14,7 @@
                     <div class="col-xl-4">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Sección Clientes</h1>
+                            <h1 class="mb-5">Sección Cursos</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -47,5 +29,4 @@
                 </div>
             </div>
         </header>
-
 {% endblock %}

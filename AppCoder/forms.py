@@ -1,9 +1,12 @@
 from django import forms
 
-class CursoForm(forms.Form):
+from AppCoder.models import Curso, Clientes
 
-    nombre = forms.CharField(min_length=3, max_length=40)
-    camada = forms.IntegerField(min_value=1000)
+
+class CursoForm(forms.ModelForm):
+    class Meta:
+        model = Curso
+        fields ="__all__"
 
 
 class BusquedaCursoForm(forms.Form):
@@ -18,7 +21,7 @@ class ClientesForm(forms.Form):
 
 class BusquedaClienteForm(forms.Form):
 
-    nombrecliente = forms.CharField(min_length=3, max_length=40)
+    email = forms.EmailField()
 class ProductoForm(forms.Form):
 
     producto = forms.CharField()

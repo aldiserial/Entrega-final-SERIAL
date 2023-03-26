@@ -1,24 +1,56 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from AppCoder.models import *
-from AppCoder.forms import *
+from AppCoder.forms import BusquedaClienteForm, BusquedaCursoForm, CursoForm, ClientesForm, ProductoForm, EnvioForm
 
 
 # Create your views here.
-def cursos(request):
+
+def crear_curso(request):
     if request.method == 'POST':
         mi_formulario = CursoForm(request.POST)
 
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
-            curso_save = Curso(nombre = informacion ['nombre'], camada = informacion ['camada'])
+            curso_save = Curso(nombre = informacion ['nombre'],
+                               camada = informacion ['camada'])
             curso_save.save()
+            return redirect("AppCoderCursos")
 
+    mi_formulario = CursoForm()
+    context = {
+        "form": mi_formulario
+    }
+    return render(request, "AppCoder/crear_curso.html", context=context)
+
+def editar_curso(request,camada):
+    get_curso = Curso.objects.get(camada=camada)
+    if request.method == 'POST':
+        mi_formulario = CursoForm(request.POST)
+
+        if mi_formulario.is_valid():
+            informacion = mi_formulario.cleaned_data
+
+            get_curso.nombre = informacion ['nombre']
+            get_curso.camada= informacion ['camada']
+
+            get_curso.save()
+            return redirect("AppCoderCursos")
+
+
+    context = {
+        "camada": camada,
+        "form": CursoForm (initial = {
+            'nombre': get_curso.nombre,
+            'camada': get_curso.camada
+        })
+    }
+    return render(request, "AppCoder/editar_curso.html", context=context)
+def cursos(request):
 
     all_cursos = Curso.objects.all()
     context = {
         "cursos": all_cursos,
-        "form": CursoForm(),
         "form_busqueda": BusquedaCursoForm()
     }
     return render(request, 'AppCoder/Cursos.html', context=context)
@@ -34,15 +66,21 @@ def busqueda_curso(request):
         }
         return render(request, "AppCoder/busqueda_curso.html", context=context)
 
+def busqueda_cliente(request):
+    mi_formulario = BusquedaClienteForm(request.GET)
+    if mi_formulario.is_valid():
+        informacion = mi_formulario.cleaned_data
+        emails_filtrados = Clientes.objects.filter(email__icontains=informacion['email'])
 
-def crear_curso (request, nombre, camada):
-    save_curso = Curso(nombre = nombre, camada = camada)
-    save_curso.save()
-    context = {
-        "nombre": nombre,
-        "camada": camada
-    }
-    return render(request, "AppCoder/save_curso.html", context)
+        context = {
+            "clientes": emails_filtrados
+        }
+        return render(request, "AppCoder/busqueda_cliente.html", context=context)
+def eliminar_curso(request, camada):
+    get_curso = Curso.objects.get(camada=camada)
+    get_curso.delete()
+    return redirect("AppCoderCursos")
+
 
 def clientes(request):
     if request.method == 'POST':
@@ -60,7 +98,7 @@ def clientes(request):
     context = {
         "clientes": all_clientes,
         "form": ClientesForm(),
-        "form_busquedac": BusquedaClienteForm()
+        "form_busqueda": BusquedaClienteForm()
 
     }
     return render(request, 'AppCoder/Clientes.html', context=context)
@@ -75,15 +113,7 @@ def crear_cliente (request, nombre, apellido, email):
             }
     return render(request, "AppCoder/save_cliente.html", context)
 
-def busqueda_cliente(request):
-    formulariocliente = BusquedaClienteForm(request.GET)
-    if formulariocliente.is_valid():
-        informacioncliente = formulariocliente.cleaned_data
-        nombres_filtrados = Clientes.objects.filter(nombre__icontains=informacioncliente['nombre'])
-        context = {
-            "nombre": nombres_filtrados
-        }
-        return render(request, "AppCoder/busqueda_cliente.html", context=context)
+
 
 
 def inicio(request):
