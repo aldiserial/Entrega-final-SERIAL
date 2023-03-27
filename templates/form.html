@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block contenido_cambia %}
-  <form method = "POST">
+    <h1> {{titulo}} </h1>
+    <form method = "POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" value="Enviar">
+      <input type="submit" value="{{ Enviar }}">
 
-  </form>
+    </form>
+
 
      <header class="masthead">
             <div class="container position-relative">

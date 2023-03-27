@@ -27,6 +27,7 @@
                 <a class="navbar-brand" href="{% url 'AppCoderEnvio' %}">Envio</a>
 
                 {% if user.is_authenticated %}
+                    <img src ="{{ user.avatar.imagen.url }}" alt="Usuario" height="40 px">
                     <a class="btn btn-primary" href="{% url 'AccountLogout' %} ">Cerrar sesión</a>
                 {% else %}
                     <a class="btn btn-primary" href="{% url 'AccountRegister' %}" >Registrar</a>
