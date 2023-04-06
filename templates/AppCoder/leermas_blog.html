@@ -2,29 +2,36 @@
 
 {% block contenido_cambia %}
 
+    <h2>{{ blog.titulo }}</h2>
+    <h5>{{ blog.subtitulo }}</h5>
+    <h6>Autor: {{ blog.autor }}</h6>
+    <p>{{ blog.cuerpo }}</p>
+    <img src ="{{ blog.imagen.url }}" alt="Imagen" height="400 px">
 
-    <form action = "{% url 'AppCoderClientes' %}" method = "post">{% csrf_token %}
-        {{form.as_p}}
-        <input type = "submit" value = "Enviar">
-    </form>
-    <br><hr>
-    <form action="{% url 'AppCoderBuscarCliente' %}">
-        {{ form_busqueda.as_p }}
-    <input type = "submit" value = "Buscar">
-    </form>
-
-    <br><hr>
-
-    {% if clientes %}
-        {% for cliente in clientes %}
-            <p>nombre: {{ cliente.nombre }}</p>
-            <p>apellido: {{cliente.apellido}} </p>
-            <p>email: {{cliente.email}} </p>
+    <h2>Comentarios</h2>
+    {% if comentario %}
+        {% for comentarios in comentario %}
+            <p>{{ comentarios.autor }}</p>
+            <p>{{comentarios.texto}} </p>
+            <form method="POST" action="{% url 'AppCoderEliminarComentario' comentarios.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Eliminar comentario">
+            </form>
+            <hr><br>
 
         {% endfor %}
     {% else %}
-        <h4>No hay clientes registrados por el momento</h4>
+        <h4>No hay comentarios por el momento</h4>
     {% endif %}
+
+    <h3>Agregar un comentario</h3>
+    <form method="POST" class="comentario-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="blog_id" value="{{ blog.id }}">
+        <button type="submit" class="btn btn-primary">Enviar comentario</button>
+    </form>
+
 
      <header class="masthead">
             <div class="container position-relative">

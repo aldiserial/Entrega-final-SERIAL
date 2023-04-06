@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block contenido_cambia %}
+
+    {% if blogs %}
+        {% for blog in blogs %}
+            <p> El blog "{{ blog.titulo }}" fue escrito por {{ blog.autor }} </p>
+
+        {% endfor %}
+    {% else %}
+        <h3>No hay blogs filtrados</h3>
+    {% endif %}
+
+{% endblock %}

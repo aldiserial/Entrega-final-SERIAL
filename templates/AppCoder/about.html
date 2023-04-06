@@ -1,20 +1,17 @@
-{% extends "base.html" %}
 
+
+{% extends "base.html" %}
+{% load static %}
 {% block contenido_cambia %}
 
-    <form action = "{% url 'AppCoderEnvio' %}" method = "post">{% csrf_token %}
-        {{form.as_p}}
-        <input type = "submit" value = "Enviar">
-    </form>
-    <br><hr>
 
-    <header class="masthead">
+     <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-4">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Sección Envío</h1>
+                            <h1 class="mb-5"> ¡Conocenos!</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -29,6 +26,27 @@
                 </div>
             </div>
         </header>
+
+    <section class="showcase">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>Quiénes somos</h2>
+                            <p class="lead mb-0">FH Flick Hockey es un emprendimiento que nació para que puedas llevar tu fanatismo a todos lados.</p>
+                        </div>
+                        <div class="col-lg-6 order-lg-2 text-black showcase-img">
+                            <img src="{% static 'AppCoder/assets/logoflick.ico' %}" alt="Descripción de la imagen" style="width: 400px; height: 300px;">
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+    </section>
+
 
 
 {% endblock %}

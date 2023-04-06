@@ -2,20 +2,20 @@
 
 {% block contenido_cambia %}
 
-
-    <form action = "{% url 'AppCoderProductos' %}" method = "post">{% csrf_token %}
-        {{form.as_p}}
-        <input type = "submit" value = "Enviar">
+    <form action = "{% url 'AppCoderEditarBlog' blog.titulo %}" method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <input type = "submit" value = "Editar">
     </form>
-    <br><hr>
 
- <header class="masthead">
+
+     <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-4">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Sección Productos</h1>
+                            <h1 class="mb-5">Sección Cursos</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -30,5 +30,4 @@
                 </div>
             </div>
         </header>
-
 {% endblock %}

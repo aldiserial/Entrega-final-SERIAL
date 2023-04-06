@@ -5,27 +5,34 @@
     <br><hr>
 
 
-    <form action="{% url 'AppCoderBuscarCurso' %}">
+    <form action="{% url 'AppCoderBuscarBlog' %}">
         {{ form_busqueda.as_p }}
         <input type = "submit" value = "Buscar">
     </form>
 
     <hr><br>
-    <a href ="{% url 'AppCoderCrearCursos' %}">Creación del curso</a>
-
+    <a href ="{% url 'AppCoderCrearBlog' %}">
+        <button>Crear un nuevo blog</button></a>
     <hr><br>
 
 
-    {% if cursos %}
-        {% for curso in cursos %}
-            <p>curso: {{ curso.nombre }}</p>
-            <p>camada: {{curso.camada}} </p>
-            <a href = "{% url 'AppCoderEditarCurso' curso.camada %}">Editar </a>
-            <a href = "{% url 'AppCoderEliminarCurso' curso.camada %}">Eliminar </a>
+    {% if blogs %}
+        {% for blog in blogs %}
+            <p>Título: {{ blog.titulo }}</p>
+            <p>Subtítulo: {{blog.subtitulo}} </p>
+            <p>Autor: {{blog.autor}} </p>
+            <p>Fecha: {{blog.fecha}} </p>
+            <a href = "{% url 'AppCoderEditarBlog' blog.titulo %}">
+                <button>Editar</button></a>
+            <a href = "{% url 'AppCoderEliminarBlog' blog.titulo %}">
+                <button>Eliminar</button></a>
+            <a href="{% url 'AppCoderLeerMas' blog.pk %}">
+                <button>Leer más</button></a>
+            <hr><br>
 
         {% endfor %}
     {% else %}
-        <h4>No hay cursos en el momento</h4>
+        <h4>No hay blogs por el momento</h4>
     {% endif %}
 
 
@@ -35,7 +42,7 @@
                     <div class="col-xl-4">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Sección Cursos</h1>
+                            <h1 class="mb-5">Sección Blogs</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->

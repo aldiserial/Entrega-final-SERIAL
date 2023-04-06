@@ -1,18 +1,40 @@
 from django import forms
 
-from AppCoder.models import Curso, Clientes
+from AppCoder.models import *
 
 
-class CursoForm(forms.ModelForm):
-    class Meta:
-        model = Curso
-        fields ="__all__"
+class BlogForm(forms.Form):
+    titulo = forms.CharField(max_length=200)
+    subtitulo = forms.CharField(max_length=200)
+    autor = forms.CharField(max_length=200)
+    cuerpo = forms.CharField(widget=forms.Textarea)
+    imagen = forms.ImageField(required=False)
 
 
-class BusquedaCursoForm(forms.Form):
 
-    nombre = forms.CharField(min_length=3, max_length=40)
+class BusquedaBlogForm(forms.Form):
 
+    titulo = forms.CharField(min_length=3, max_length=40)
+
+class ComentarioForm(forms.Form):
+    autor = forms.CharField(max_length=100)
+    texto = forms.CharField(widget=forms.Textarea)
+
+    def save(self, blog, commit=True):
+        comentario = Comentarios(
+            autor=self.cleaned_data['autor'],
+            texto=self.cleaned_data['texto'],
+            blog=blog
+        )
+        if commit:
+            comentario.save()
+        return comentario
+
+    def __init__(self, *args, **kwargs):
+        super(ComentarioForm, self).__init__(*args, **kwargs)
+        self.fields['blog_id'].widget = forms.HiddenInput()
+
+    blog_id = forms.IntegerField()
 class ClientesForm(forms.Form):
 
     nombre = forms.CharField()
