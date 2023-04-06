@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block contenido_cambia %}
+
+    {% if clientes %}
+        {% for cliente in clientes %}
+            <p> Cliente: {{cliente.nombre}} {{cliente.apellido}}, {{ cliente.email }} </p>
+
+        {% endfor %}
+    {% else %}
+        <h3>No existe el cliente señalado</h3>
+    {% endif %}
+
+{% endblock %}

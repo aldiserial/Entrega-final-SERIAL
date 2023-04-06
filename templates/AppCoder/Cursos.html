@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block contenido_cambia %}
+
+    <br><hr>
+
+
+    <form action="{% url 'AppCoderBuscarCurso' %}">
+        {{ form_busqueda.as_p }}
+        <input type = "submit" value = "Buscar">
+    </form>
+
+    <hr><br>
+    <a href ="{% url 'AppCoderCrearCursos' %}">Creación del curso</a>
+
+    <hr><br>
+
+
+    {% if cursos %}
+        {% for curso in cursos %}
+            <p>curso: {{ curso.nombre }}</p>
+            <p>camada: {{curso.camada}} </p>
+            <a href = "{% url 'AppCoderEditarCurso' curso.camada %}">Editar </a>
+            <a href = "{% url 'AppCoderEliminarCurso' curso.camada %}">Eliminar </a>
+
+        {% endfor %}
+    {% else %}
+        <h4>No hay cursos en el momento</h4>
+    {% endif %}
+
+
+     <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">Sección Cursos</h1>
+                            <!-- Signup form-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- * * SB Forms Contact Form * *-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- This form is pre-integrated with SB Forms.-->
+                            <!-- To make this form functional, sign up at-->
+                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                            <!-- to get an API token!-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
