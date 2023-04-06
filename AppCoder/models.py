@@ -1,36 +1,27 @@
-
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.db import models
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from AppCoder.forms import BlogForm
+from django.utils import timezone
 
 # Create your models here.
-class Curso(models.Model):
-    nombre = models.CharField(max_length=40)
-    camada = models.IntegerField()
+class Blog(models.Model):
+    titulo = models.CharField(max_length=200)
+    subtitulo = models.CharField(max_length=200)
+    autor = models.CharField(max_length=200)
+    cuerpo = models.TextField()
+    imagen = models.ImageField(upload_to="media", null=True, blank=True)
+    fecha = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f'Curso: {self.nombre}, Camada: {self.camada}'
+        return f"El blog {self.titulo} fue escrito por {self.autor}"
 
-class Clientes(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
 
-    def __str__(self):
-        return f'Nombre: {self.nombre} {self.apellido}, Email: {self.email}'
-class Producto(models.Model):
-    producto = models.CharField(max_length=30, unique=True)
-    categoria = models.CharField(max_length=30)
-    stock = models.IntegerField()
 
-    def __str__(self):
-        return f'Producto: {self.producto}. {self.stock} unidades en stock.'
+class Comentarios(models.Model):
+    autor = models.CharField(max_length=200)
+    texto = models.TextField()
+    blog = models.ForeignKey('Blog', on_delete=models.CASCADE)
 
-class Envio(models.Model):
-    nombre_apellido = models.CharField(max_length=40)
-    calle = models.CharField(max_length=40)
-    numero_calle = models.IntegerField()
-    localidad = models.CharField(max_length=40)
-    provincia = models.CharField(max_length=40)
-    codigopostal = models.IntegerField()
-
-    def __str__(self):
-        return f'Domicilio: {self.calle} {self.numero_calle}, {self.localidad}, {self.provincia} '

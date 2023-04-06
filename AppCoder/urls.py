@@ -3,17 +3,18 @@ from django.urls import path, include
 from django.contrib import admin
 from AppCoder.views import *
 
+
+
 urlpatterns = [
 
-        path('cursos', cursos, name = "AppCoderCursos"),
-        path('cursos/crear', crear_curso, name = "AppCoderCrearCursos"),
-        path('busqueda_curso', busqueda_curso, name="AppCoderBuscarCurso"),
-        path('cursos/eliminar/<camada>', eliminar_curso, name="AppCoderEliminarCurso"),
-        path('cursos/editar/<camada>', editar_curso, name="AppCoderEditarCurso"),
-        path('busqueda_cliente', busqueda_cliente, name="AppCoderBuscarCliente"),
-        path('clientes', clientes, name = "AppCoderClientes"),
-        path('producto', producto, name = "AppCoderProductos"),
-        path('envio', envio, name="AppCoderEnvio")
+        path('blog', blog, name = "AppCoderBlogs"),
+        path('blog/crear', crear_blog, name = "AppCoderCrearBlog"),
+        path('busqueda_blog', busqueda_blog, name="AppCoderBuscarBlog"),
+        path('blog/eliminar/<titulo>', eliminar_blog, name="AppCoderEliminarBlog"),
+        path('blog/editar/<titulo>', editar_blog, name="AppCoderEditarBlog"),
+        path('blog/leermas/<int:pk>/', blog_detalles, name='AppCoderLeerMas'),
+        path('blog/eliminar_comentario/<int:pk>/', eliminar_comentario, name='AppCoderEliminarComentario'),
+        path('about/', about, name="AppCoderAbout")
 
 
 ]

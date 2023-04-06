@@ -1,44 +1,43 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
-
+from django.conf import settings
 from account.forms import UserRegisterForm
 from account.models import Avatar
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
+from django.core.files.storage import default_storage
 
 def editar_usuario(request):
-
     user = request.user
 
     if request.method == "POST":
-        form = UserRegisterForm(request.POST, request.FILES)
+        form = UserRegisterForm(request.POST, request.FILES, instance=user)
 
         if form.is_valid():
             informacion = form.cleaned_data
 
             user.username = informacion["username"]
             user.email = informacion["email"]
-            user.is_staff = informacion["is_staff"]
+            user.save()
 
-            try:
-                user.avatar.imagen = informacion["imagen"]
-            except:
-                avatar = Avatar(user=user, imagen=informacion["imagen"])
+            if not hasattr(user, 'avatar'):
+                avatar = Avatar(user=user)
                 avatar.save()
 
-            user.save()
-            return redirect("AccountLogin")
+            if informacion.get("imagen"):
+                user.avatar.imagen = informacion["imagen"]
+                user.avatar.save()
 
-    form = UserRegisterForm(initial={
-        "username": user.username,
-        "email": user.email,
-        "is_staff": user.is_staff
-    })
+            return redirect("AccountLogin")
+    else:
+        form = UserRegisterForm(instance=user)
 
     context = {
         "form": form,
         "titulo": "Editar usuario",
-        "Enviar": "Editar"
+        "enviar": "Editar"
     }
 
     return render(request, "form.html", context=context)
@@ -51,14 +50,14 @@ def register_account(request):
 
         if form.is_valid():
             form.save()
-            return redirect("AccountLogin")
+            return redirect("AppCoderInicio")
 
     # form = UserCreationForm()
     form = UserRegisterForm()
     context = {
         "form": form,
         "titulo": "Registra usuario",
-        "Enviar": "Registrar"
+        "enviar": "Registrar"
     }
     return render(request, "form.html", context=context)
 
@@ -77,12 +76,12 @@ def login_account(request):
 
                 return redirect("AppCoderInicio")
             else:
-                return redirect("AppCoderInicio")
+                return redirect("AccountBlog")
 
     form = AuthenticationForm()
     context = {
         "form": form,
         "titulo": "Login",
-        "Enviar": "Iniciar"
+        "enviar": "Iniciar"
     }
     return render(request, "form.html", context=context)

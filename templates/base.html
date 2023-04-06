@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,17 +22,21 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'AppCoderInicio' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'AppCoderCursos' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'AppCoderClientes' %}">Clientes</a>
-                <a class="navbar-brand" href="{% url 'AppCoderProductos' %}">Productos</a>
-                <a class="navbar-brand" href="{% url 'AppCoderEnvio' %}">Envio</a>
+
+                <a class="navbar-brand" href="{% url 'AppCoderBlogs' %}">Blogs</a>
+                <a class="navbar-brand" href="{% url 'AppCoderAbout' %}">Sobre Nosotros</a>
+                <a class="navbar-brand" href="{% url 'AccountEditarUsuario' %}">Editar perfil</a>
+
+
 
                 {% if user.is_authenticated %}
-                    <img src ="{{ user.avatar.imagen.url }}" alt="Usuario" height="40 px">
-                    <a class="btn btn-primary" href="{% url 'AccountLogout' %} ">Cerrar sesión</a>
+                    {% if user.avatar and user.avatar.imagen %}
+                        <img src="{{ user.avatar.imagen.url }}" alt="Usuario" height="40 px">
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'AccountLogout' %}">Logout</a>
                 {% else %}
-                    <a class="btn btn-primary" href="{% url 'AccountRegister' %}" >Registrar</a>
-                    <a class="btn btn-primary" href="{% url 'AccountLogin' %} ">Iniciar sesión</a>
+                    <a class="btn btn-primary" href="{% url 'AccountRegister' %}">Registrar</a>
+                    <a class="btn btn-primary" href="{% url 'AccountLogin' %}">Login</a>
                 {% endif %}
 
 
@@ -91,58 +96,61 @@
                 </div>
             </div>
         </header>
-        {% endblock %}
+
 
         <!-- Masthead-->
 
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
-                            <h3>ENVÍOS GRATIS</h3>
-                            <p class="lead mb-0">en compras mayores a $10.000</p>
+            <section class="features-icons bg-light text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                                <h3>ENVÍOS GRATIS</h3>
+                                <p class="lead mb-0">en compras mayores a $10.000</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
-                            <h3>TRANSFERENCIA BANCARIA</h3>
-                            <p class="lead mb-0">10% de descuento</p>
+                        <div class="col-lg-4">
+                            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                                <h3>TRANSFERENCIA BANCARIA</h3>
+                                <p class="lead mb-0">10% de descuento</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
-                            <h3>3 Y 6 CUOTAS SIN INTERÉS</h3>
-                            <p class="lead mb-0">en todas las tarjetas</p>
+                        <div class="col-lg-4">
+                            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                                <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                                <h3>3 Y 6 CUOTAS SIN INTERÉS</h3>
+                                <p class="lead mb-0">en todas las tarjetas</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- Image Showcases-->
-        <section class="showcase">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-black showcase-img" style="background-image: url({% static 'AppCoder/assets/img/MUSCULOSA_ARG.jpg'%})"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Colección ARGENTUM</h2>
-                        <p class="lead mb-0">Demostrá tu fanatismo por ARG con esta colección</p>
+            </section>
+            <!-- Image Showcases-->
+            <section class="showcase">
+                <div class="container-fluid p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-6 order-lg-2 text-black showcase-img" style="background-image: url('{% static 'AppCoder/assets/img/MUSCULOSA_ARG.jpg' %}')">
+
+                        </div>
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>Colección ARGENTUM</h2>
+                            <p class="lead mb-0">Demostrá tu fanatismo por ARG con esta colección</p>
+                        </div>
                     </div>
+
+
                 </div>
-
-
-            </div>
-        </section>
+            </section>
+        {% endblock %}
         <!-- Call to Action-->
         <section class="call-to-action text-white text-center" id="signup">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+                        <h2 class="mb-4">¿Estás listo para formar parte de esta comunidad?</h2>
                         <!-- Signup form-->
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
@@ -155,11 +163,11 @@
                             <!-- Email address input-->
                             <div class="row">
                                 <div class="col">
-                                    <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Email Address" data-sb-validations="required,email" />
+                                    <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Escribí tu email" data-sb-validations="required,email" />
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
                                 </div>
-                                <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">¡Unite!</button></div>
                             </div>
                             <!-- Submit success message-->
                             <!---->
@@ -188,7 +196,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'SobreNosotros' %}">Sobre Nosotros</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Contact</a></li>
                             <li class="list-inline-item">⋅</li>
