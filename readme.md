@@ -2,6 +2,9 @@ PROYECTO FINAL
 06 de abril del 2023
 ESTUDIANTE: SERIAL, Aldana Claribel
 
+EL VIDEO DE EXPLICACIÓN DEL USO DE LA PÁGINA SE ENCUENTRA EN EL SIGUIENTE LINK:
+https://clipchamp.com/watch/8uTm6mp0cZ8
+
 La aplicacion consta de 4 (cuatro) pestañas más un panel ADMINISTRADOR.
 
 Pestaña INICIO: es la bienvenida a la aplicación.
