@@ -14,7 +14,8 @@ urlpatterns = [
         path('blog/editar/<titulo>', editar_blog, name="AppCoderEditarBlog"),
         path('blog/leermas/<int:pk>/', blog_detalles, name='AppCoderLeerMas'),
         path('blog/eliminar_comentario/<int:pk>/', eliminar_comentario, name='AppCoderEliminarComentario'),
-        path('about/', about, name="AppCoderAbout")
+        path('about/', about, name="AppCoderAbout"),
+        path('noregistrado/', noregistrado, name="AppCoderNoRegistrado")
 
 
 ]

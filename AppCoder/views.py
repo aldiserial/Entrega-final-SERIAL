@@ -15,7 +15,7 @@ def blog(request):
     }
     return render(request, 'AppCoder/Blogs.html', context=context)
 
-
+@login_required
 def crear_blog(request):
     if request.method == 'POST':
         mi_formulario = BlogForm(request.POST, request.FILES)
@@ -109,7 +109,7 @@ def blog_detalles(request, pk):
     }
 
     return render(request, 'AppCoder/leermas_blog.html', context=context)
-
+@login_required
 def eliminar_comentario(request, pk):
     comentario = get_object_or_404(Comentarios, pk=pk)
     blog_id = comentario.blog.id
@@ -122,3 +122,6 @@ def inicio(request):
 
 def about(request):
     return render(request, "AppCoder/about.html")
+
+def noregistrado(request):
+    return render(request, "AppCoder/noregistrado.html")
