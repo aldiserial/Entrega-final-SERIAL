@@ -2,7 +2,7 @@ PROYECTO FINAL
 06 de abril del 2023
 ESTUDIANTE: SERIAL, Aldana Claribel
 
-La aplicacion consta de 3 (tres) pestañas más un panel ADMINISTRADOR.
+La aplicacion consta de 4 (cuatro) pestañas más un panel ADMINISTRADOR.
 
 Pestaña INICIO: es la bienvenida a la aplicación.
 
