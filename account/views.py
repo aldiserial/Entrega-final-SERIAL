@@ -47,6 +47,7 @@ def register_account(request):
     if request.method == "POST":
         # form = UserCreationForm(request.POST)
         form = UserRegisterForm(request.POST)
+        print(form.errors)
 
         if form.is_valid():
             form.save()
